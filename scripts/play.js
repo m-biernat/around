@@ -15,6 +15,9 @@ var playState = {
         // Player creation
         player.create();
 
+        asteroids = game.add.physicsGroup();
+        generateAsteroids();
+
         // Keybinds
         this.plusKey = game.input.keyboard.addKey(Phaser.Keyboard.UP);
         this.plusKey.onDown.add(this.incOrbit, this);
@@ -62,6 +65,8 @@ var playState = {
             current.level++;
             console.log(current.level + " " + current.score);
             generatePlanet();
+
+            generateAsteroids();
             //game.state.start('lose');
         }
     },
