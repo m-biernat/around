@@ -16,6 +16,7 @@ var playState = {
         player.create();
 
         asteroids = game.add.physicsGroup();
+        createAsteroids();
         generateAsteroids();
 
         // Keybinds

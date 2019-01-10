@@ -15,8 +15,8 @@ var player = {
 
         player.speed = 1;
         player.currentAngle = -90;
-        player.maneuverForce = 1;
-        player.orbitOffset = 0;
+        player.maneuverForce = 1.5;
+        player.orbitOffset = outerOrbitOffset / 2;
         player.orbitDirection = 0;
     }
 
