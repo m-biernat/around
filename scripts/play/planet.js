@@ -1,4 +1,4 @@
-// 
+// This file contains planet object and planet generation method.
 
 const innerOrbitOffset = 0, outerOrbitOffset = 75;
 
@@ -8,7 +8,6 @@ var planet = {
     {
         planet = game.add.sprite(game.world.centerX, game.world.centerY, "planets");
 
-        // Between [200;350]
         planet.width = 250;
         planet.height = 250;
         planet.anchor.setTo(.5,.5);
@@ -21,33 +20,30 @@ var planet = {
 
 var generatePlanet = function() 
 {
-    // Sprite selection
-    let sprite = Math.floor((Math.random() * 6));
+    // Frame selection from spritesheet
+    let frame = Math.floor((Math.random() * (planetsCount + 1)));
 
-    // Sprite rotation
-    let rotation = Math.floor((Math.random() * 361) - 180);
+    // Generating angle of rotation
+    let angle = Math.floor((Math.random() * 361) - 180);
 
-    // Tint generation
+    // Generating tint value
     let tint = Math.random() * 0xffffff;
 
-    // Size generation
+    // Size generation form [200;350]
     let radius = 0, minRadius = 200, maxRadius = 151;
 
-    if (current.level <= 100) {
+    // [200;250] at start increasing every level to make wider range
+    if (current.level <= 100)
         radius = Math.floor((Math.random() * (50 + current.level)) + minRadius);
-    }
-    else {
+    else
         radius = Math.floor((Math.random() * maxRadius) + minRadius);
-    }
 
-    // Gravity based on size
+    // Setting gravity based on radius
     let gravity = radius * 0.001;
-
-    console.log("Generate!");
-    console.log("R: " + radius + " G: " + gravity);
     
-    planet.frame = sprite;
-    planet.angle = rotation;
+    // Applying generated values to the planet
+    planet.frame = frame;
+    planet.angle = angle;
     planet.tint = tint;
     planet.height = radius;
     planet.width = radius;

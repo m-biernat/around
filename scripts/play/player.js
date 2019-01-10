@@ -1,4 +1,4 @@
-// 
+// This is responsible for player object.
 
 const playerSize = 25;
 
