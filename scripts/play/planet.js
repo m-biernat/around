@@ -6,7 +6,7 @@ var planet = {
 
     create: function() 
     {
-        planet = game.add.sprite(game.world.centerX, game.world.centerY, "planet");
+        planet = game.add.sprite(game.world.centerX, game.world.centerY, "planets");
 
         // Between [200;350]
         planet.width = 250;
@@ -22,6 +22,10 @@ var planet = {
 var generatePlanet = function() 
 {
     // Sprite selection
+    let sprite = Math.floor((Math.random() * 6));
+
+    // Sprite rotation
+    let rotation = Math.floor((Math.random() * 361) - 180);
 
     // Tint generation
     let tint = Math.random() * 0xffffff;
@@ -42,6 +46,8 @@ var generatePlanet = function()
     console.log("Generate!");
     console.log("R: " + radius + " G: " + gravity);
     
+    planet.frame = sprite;
+    planet.angle = rotation;
     planet.tint = tint;
     planet.height = radius;
     planet.width = radius;
