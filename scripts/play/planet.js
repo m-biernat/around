@@ -18,7 +18,7 @@ var planet = {
 
 }
 
-var generatePlanet = function() 
+function generatePlanet() 
 {
     // Frame selection from spritesheet
     let frame = Math.floor((Math.random() * (planetsCount + 1)));

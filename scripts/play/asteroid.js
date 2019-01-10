@@ -1,10 +1,14 @@
 // 
 
-var asteroids;
+const spawnCount = 12;
 
-var createAsteroids = function () 
+var asteroids = {
+    count: 0
+}
+
+// Creates and setups all astroid at center of the screen and hides them
+function createAsteroids() 
 {
-    let spawnCount = 16;
     for (let i = 0; i < spawnCount; i++) 
     {    
         let asteroid = game.add.sprite(game.world.centerX, game.world.centerY, 'asteroid');
@@ -12,21 +16,20 @@ var createAsteroids = function ()
         asteroid.visible = false;
         asteroids.add(asteroid);
     }
+    asteroids.count = 5;
 }
 
-var generateAsteroids = function()
+// "Generates" asteroids by changing their parameters
+function generateAsteroids()
 {
-    // Determine number of asteroids
-    let numOfAsteroids = 0;
-
-    if (current.level <= 50)
-        numOfAsteroids = 5 + Math.floor(current.level / 5); 
-    else
-        numOfAsteroids = 16;
+    // Increease number of asteroids
+    if (current.level % 6 == 0 && asteroids.count < spawnCount)
+        asteroids.count++;
 
     // Redistribute them around planet
     let currentAngle = -80, nextAngle = 40;
-    let positions = generatePositions(numOfAsteroids);
+    let positions = generatePositions();
+    console.log(positions);
     let currentAsteroid = 0;
 
     for (let i = 0; i < 16; i++) 
@@ -35,12 +38,14 @@ var generateAsteroids = function()
             currentAngle = Phaser.Math.wrapAngle(currentAngle + nextAngle);
 
         if(positions[currentAsteroid] == i) {
-            let angleOffset = Math.floor((Math.random() * 3) - 1);
-            let radians = Phaser.Math.degToRad(currentAngle + angleOffset);
-            
             let asteroid = asteroids.getChildAt(currentAsteroid);
 
-            let currentOffset = (planet.width + 15 + 20) / 2 + 
+            let angleOffset = Math.floor((Math.random() * 3) - 1);
+            let radians = Phaser.Math.degToRad(currentAngle + angleOffset);
+
+            let radius = Math.floor((Math.random() * 11) + 15);
+
+            let currentOffset = (planet.width + 15 + radius) / 2 + 
             Math.floor(Math.random() * (outerOrbitOffset + 1));
 
             let spawnPointX = planet.x + currentOffset * Math.cos(radians);
@@ -49,8 +54,6 @@ var generateAsteroids = function()
             let angle = Math.floor((Math.random() * 361) - 180);
 
             let tint = Math.random() * 0xffffff;
-
-            radius = Math.floor((Math.random() * 5) + 18);
             
             asteroid.x = spawnPointX;
             asteroid.y = spawnPointY;
@@ -65,33 +68,32 @@ var generateAsteroids = function()
     }
 }
 
-var generatePositions = function(numOfAsteroids){
-    let weightArray = Array.from({length: 16}, () => Math.random());
-    
-    let indexArray = [];
-  
-    if (numOfAsteroids < 9)
-      for(let i = 0; i < numOfAsteroids; i++)
-        indexArray[i] = indexOfMax(weightArray, 2);
+function generatePositions()
+{
+    let arr = [];
+
+    if (asteroids.count < 8)
+        for (let i = 0; i < 8; i++)
+            arr[i] = i * 2;
     else
-      for(let i = 0; i < numOfAsteroids; i++)
-        indexArray[i] = indexOfMax(weightArray, 1);
-  
-    indexArray.sort((a, b) => a - b);
-    return indexArray;
-}
+        for (let i = 0; i < 16; i++)
+            arr[i] = i;
 
-var indexOfMax = function(arr, inc) {
-    let max = arr[0];
-    let maxIndex = 0;
-
-    for (let i = 0; i < arr.length; i += inc) {
-        if (arr[i] > max) {
-            maxIndex = i;
-            max = arr[i];
-        }
-    }
+    // Fisher–Yates Shuffle
+    let i = arr.length, j = 0, temp;
     
-    arr[maxIndex] = 0;
-    return maxIndex;
+    while (i--) 
+    {
+        j = Math.floor(Math.random() * (i+1));
+
+        // Swap randomly chosen element with current element
+        temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+
+    arr = arr.slice(0, asteroids.count);
+
+    arr.sort((a, b) => a - b);
+    return arr;
 }
