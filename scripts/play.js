@@ -9,6 +9,8 @@ var playState = {
 
     create: function()
     {
+        this.background = game.add.sprite(0, 0, "background");
+
         // First planet creation
         planet.create();
 

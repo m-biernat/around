@@ -7,6 +7,7 @@ var loadState = {
     preload: function() {
         game.load.image("player", "assets/player.png");
         game.load.image("asteroid", "assets/asteroid.png");
+        game.load.image("background", "assets/background.png");
         game.load.spritesheet("planets", "assets/planets.png", 500, 500, planetsCount);
     },
 
