@@ -54,10 +54,10 @@ var playState = {
         
         player.currentAngle = Phaser.Math.wrapAngle(player.currentAngle + player.speed);
 
-        var radians = Phaser.Math.degToRad(player.currentAngle);
+        let radians = Phaser.Math.degToRad(player.currentAngle);
 
-        var planetEdge = (planet.width + 15 + playerSize) / 2;
-        var currentOrbit = planetEdge + player.orbitOffset;
+        let planetEdge = (planet.width + 15 + playerSize) / 2;
+        let currentOrbit = planetEdge + player.orbitOffset;
 
         player.x = planet.x + currentOrbit * Math.cos(radians);
         player.y = planet.y + currentOrbit * Math.sin(radians);

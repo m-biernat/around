@@ -2,6 +2,8 @@
 
 const innerOrbitOffset = 0, outerOrbitOffset = 75;
 
+var orbit;
+
 var planet = {
 
     create: function() 
@@ -14,6 +16,10 @@ var planet = {
         planet.tint = 0x4286f4;
 
         planet.gravity = 0.25;
+        
+        orbit = game.add.graphics();
+        orbit.anchor.setTo(.5, .5);
+        drawOrbit();
     }
 
 }
@@ -48,4 +54,14 @@ function generatePlanet()
     planet.height = radius;
     planet.width = radius;
     planet.gravity = gravity;
+
+    drawOrbit();
+}
+
+function drawOrbit()
+{
+    orbit.clear();
+    orbit.lineStyle(2, 0xffffff, .1);
+    orbit.drawCircle(planet.x, planet.y, planet.width + 115 + outerOrbitOffset);
+    orbit.drawCircle(planet.x, planet.y, planet.width + 15 + playerSize + innerOrbitOffset);
 }
