@@ -23,6 +23,14 @@ var playState = {
         createAsteroids();
         generateAsteroids();
 
+        this.levelText = game.add.text(game.world.centerX * 0.2, game.world.centerY * 1.8, 
+            "LEVEL", { fill: '#FFFFFF' });
+        this.levelText.anchor.setTo(.5, .5);
+
+        this.scoreText = game.add.text(game.world.centerX * 1.8 , game.world.centerY * 1.8, 
+            "SCORE", { fill: '#FFFFFF' });
+        this.scoreText.anchor.setTo(.5, .5);
+
         // Keybinds
         this.plusKey = game.input.keyboard.addKey(Phaser.Keyboard.UP);
         this.plusKey.onDown.add(this.incOrbit, this);
@@ -49,7 +57,6 @@ var playState = {
         
         if (player.angle == -91) 
         {      
-            console.log(current.level + " " + current.score);
             console.log(current.level * asteroids.positionArr.length);
             
             current.level++;
@@ -57,6 +64,9 @@ var playState = {
             generatePlanet();
             generateAsteroids();      
         }
+
+        this.levelText.setText(current.level);
+        this.scoreText.setText(current.score);
     },
 
     incOrbit: function() {
@@ -65,6 +75,14 @@ var playState = {
 
     decOrbit: function() {
         player.orbitDirection = -player.maneuverForce;
+    },
+
+    /*
+    render: function() 
+    {
+        game.debug.body(player);
+        game.debug.physicsGroup(asteroids); 
     }
+    */
 
 }

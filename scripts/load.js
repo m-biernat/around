@@ -2,6 +2,8 @@
 
 const planetsCount = 3;
 
+var highScore;
+
 var loadState = {
     
     preload: function() {
@@ -9,6 +11,9 @@ var loadState = {
         game.load.image("asteroid", "assets/asteroid.png");
         game.load.image("background", "assets/background.png");
         game.load.spritesheet("planets", "assets/planets.png", 500, 500, planetsCount);
+
+        highScore = window.localStorage.getItem('highScore');
+        if (!highScore) highScore = 0;
     },
 
     create: function() {
