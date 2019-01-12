@@ -2,26 +2,22 @@
 
 const innerOrbitOffset = 0, outerOrbitOffset = 75;
 
-var orbit;
+var planet, orbit;
 
-var planet = {
+function createPlanet() 
+{
+    planet = game.add.sprite(game.world.centerX, game.world.centerY, "planets");
 
-    create: function() 
-    {
-        planet = game.add.sprite(game.world.centerX, game.world.centerY, "planets");
+    planet.width = 250;
+    planet.height = 250;
+    planet.anchor.setTo(.5,.5);
+    planet.tint = 0x4286f4;
 
-        planet.width = 250;
-        planet.height = 250;
-        planet.anchor.setTo(.5,.5);
-        planet.tint = 0x4286f4;
-
-        planet.gravity = 0.25;
-        
-        orbit = game.add.graphics();
-        orbit.anchor.setTo(.5, .5);
-        drawOrbit();
-    }
-
+    planet.gravity = 1.25;
+    
+    orbit = game.add.graphics();
+    orbit.anchor.setTo(.5, .5);
+    drawOrbit();
 }
 
 function generatePlanet() 
@@ -45,7 +41,7 @@ function generatePlanet()
         radius = Math.floor((Math.random() * maxRadius) + minRadius);
 
     // Setting gravity based on radius
-    let gravity = radius * 0.001;
+    let gravity = radius * 0.005;
     
     // Applying generated values to the planet
     planet.frame = frame;

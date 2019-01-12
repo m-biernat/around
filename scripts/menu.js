@@ -5,6 +5,8 @@ const C_PLAY_TEXT = "Press [SPACEBAR] to start!";
 var menuState = {
 
     create: function() {
+        this.background = game.add.sprite(0, 0, "background");
+
         this.playText = game.add.text(game.world.centerX, game.world.centerY * 1.5, 
             C_PLAY_TEXT, { fill: '#FFFFFF' });
         this.playText.anchor.setTo(.5,.5);

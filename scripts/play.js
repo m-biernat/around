@@ -8,14 +8,16 @@ var current = {
 var playState = {
 
     create: function()
-    {
+    {    
         this.background = game.add.sprite(0, 0, "background");
 
+        this.physics.startSystem(Phaser.Physics.ARCADE);
+
         // First planet creation
-        planet.create();
+        createPlanet()
 
         // Player creation
-        player.create();
+        createPlayer();
 
         asteroids = game.add.physicsGroup();
         createAsteroids();
@@ -27,63 +29,42 @@ var playState = {
 
         this.minusKey = game.input.keyboard.addKey(Phaser.Keyboard.DOWN);
         this.minusKey.onDown.add(this.decOrbit, this);
-
-        this.zeroKey = game.input.keyboard.addKey(Phaser.Keyboard.Z);
-        this.zeroKey.onDown.add(this.fixOrbit, this);
     },
 
     update: function() 
     {
-        if (player.orbitDirection != 0) {
-            if (player.orbitOffset >= innerOrbitOffset 
-                && player.orbitOffset <= outerOrbitOffset)
-            {
-                player.orbitOffset += (player.orbitDirection - planet.gravity);
-            }
+        movePlayer();
 
-            if (player.orbitOffset < 0) {
-                player.orbitOffset = 0;
-                player.orbitDirection = 0;
-            }
-                
-            if (player.orbitOffset > 75) {
-                player.orbitOffset = 75;
-                player.orbitDirection = 0;
-            }
+        game.physics.arcade.collide(player, asteroids, function() { game.state.start('lose'); });
+
+        if (player.angle == asteroids.positionArr[asteroids.nextPosition])
+        {
+            current.score += current.level;
+
+            asteroids.nextPosition++;
+
+            if(asteroids.nextPosition == asteroids.positionArr.length)
+                asteroids.nextPosition = 0;
         }
         
-        player.currentAngle = Phaser.Math.wrapAngle(player.currentAngle + player.speed);
-
-        let radians = Phaser.Math.degToRad(player.currentAngle);
-
-        let planetEdge = (planet.width + 15 + playerSize) / 2;
-        let currentOrbit = planetEdge + player.orbitOffset;
-
-        player.x = planet.x + currentOrbit * Math.cos(radians);
-        player.y = planet.y + currentOrbit * Math.sin(radians);
-
-        player.angle = player.currentAngle;
-        
-        if (player.angle == -91) {
-            current.level++;
+        if (player.angle == -91) 
+        {      
             console.log(current.level + " " + current.score);
+            console.log(current.level * asteroids.positionArr.length);
+            
+            current.level++;
+            
             generatePlanet();
-
-            generateAsteroids();
-            //game.state.start('lose');
+            generateAsteroids();      
         }
     },
 
     incOrbit: function() {
-        player.orbitDirection = player.maneuverForce;
+        player.orbitDirection = player.maneuverForce; 
     },
 
     decOrbit: function() {
         player.orbitDirection = -player.maneuverForce;
-    },
-
-    fixOrbit: function() {
-        player.orbitDirection = 0;
     }
 
 }

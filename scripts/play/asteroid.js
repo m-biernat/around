@@ -1,10 +1,8 @@
-// 
+// This is responsible for generating asteroids.
 
 const spawnCount = 12;
 
-var asteroids = {
-    count: 0
-}
+var asteroids;
 
 // Creates and setups all astroid at center of the screen and hides them
 function createAsteroids() 
@@ -17,6 +15,7 @@ function createAsteroids()
         asteroids.add(asteroid);
     }
     asteroids.count = 5;
+    asteroids.nextPosition = 0;
 }
 
 // "Generates" asteroids by changing their parameters
@@ -29,8 +28,8 @@ function generateAsteroids()
     // Redistribute them around planet
     let currentAngle = -80, nextAngle = 40;
     let positions = generatePositions();
-    console.log(positions);
-    let currentAsteroid = 0;
+
+    let currentAsteroid = 0, offsetArr = [];
 
     for (let i = 0; i < 16; i++) 
     {
@@ -45,8 +44,32 @@ function generateAsteroids()
 
             let radius = Math.floor((Math.random() * 11) + 15);
 
-            let currentOffset = (planet.width + 15 + radius) / 2 + 
-            Math.floor(Math.random() * (outerOrbitOffset + 1));
+            let planetEdge = (planet.width + 15 + radius) / 2;
+            let orbitOffset = Math.floor(Math.random() * (outerOrbitOffset + 1));
+
+            offsetArr.push([currentAngle, orbitOffset, currentAngle + angleOffset]);
+
+            if (currentAsteroid > 0 
+                && (currentAngle  == offsetArr[currentAsteroid - 1][0]))
+            {
+                let prevOffset = offsetArr[currentAsteroid - 1][1];
+
+                let diff = Math.abs(prevOffset - orbitOffset);
+
+                if (diff < radius)
+                    orbitOffset = prevOffset + radius;
+
+                if (prevOffset < 15 && orbitOffset > outerOrbitOffset - 15)
+                    orbitOffset = outerOrbitOffset;
+
+                if (orbitOffset < 15 && prevOffset > outerOrbitOffset - 15)
+                    orbitOffset = innerOrbitOffset;
+
+                if (prevOffset > 20 && prevOffset < outerOrbitOffset - 20 && diff < radius)
+                    orbitOffset = prevOffset + radius / 2;
+            }
+
+            let currentOffset = planetEdge + orbitOffset;
 
             let spawnPointX = planet.x + currentOffset * Math.cos(radians);
             let spawnPointY = planet.y + currentOffset * Math.sin(radians);
@@ -66,13 +89,15 @@ function generateAsteroids()
             currentAsteroid++;
         }
     }
+
+    asteroids.positionArr = offsetArr.map(function(elem){ return elem[2] });
 }
 
 function generatePositions()
 {
     let arr = [];
 
-    if (asteroids.count < 8)
+    if (asteroids.count < 9)
         for (let i = 0; i < 8; i++)
             arr[i] = i * 2;
     else
