@@ -11,7 +11,7 @@ function createAsteroids()
     {    
         let asteroid = game.add.sprite(game.world.centerX, game.world.centerY, 'asteroid');
         asteroid.anchor.setTo(.5, .5);
-        asteroid.visible = false;
+        asteroid.kill();
         asteroids.add(asteroid);
     }
     asteroids.count = 5;
@@ -84,7 +84,8 @@ function generateAsteroids()
             asteroid.width = radius;
             asteroid.angle = angle;
             asteroid.tint = tint;
-            asteroid.visible = true;
+            asteroid.revive();
+            asteroid.body.immovable = true;
 
             currentAsteroid++;
         }

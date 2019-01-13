@@ -46,7 +46,10 @@ var playState = {
         this.minusKey = game.input.keyboard.addKey(Phaser.Keyboard.DOWN);
         this.minusKey.onDown.add(this.decOrbit, this);
 
-        this.fireKey = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+        this.zeroKey = game.input.keyboard.addKey(Phaser.Keyboard.Z);
+        this.zeroKey.onDown.add(this.fixOrbit, this);
+
+        this.fireKey = game.input.keyboard.addKey(Phaser.Keyboard.X);
         this.fireKey.onDown.add(this.fire, this);
     },
 
@@ -54,18 +57,24 @@ var playState = {
     {
         movePlayer();
 
-        game.physics.arcade.collide(player, asteroids, function() { game.state.start('lose'); });
+        game.physics.arcade.overlap(player, asteroids, this.playerHit);
+        game.physics.arcade.overlap(this.weapon.bullets, asteroids, this.asteroidHit);
 
         let pos = asteroids.positionArr[asteroids.nextPosition];
 
         if (pos - 1 < player.angle && pos + 1 > player.angle )
         {
             current.score += current.level;
-
             asteroids.nextPosition++;
 
             if(asteroids.nextPosition == asteroids.positionArr.length)
                 asteroids.nextPosition = 0;
+            else
+                if (pos == asteroids.positionArr[asteroids.nextPosition])
+                {
+                    current.score += current.level;
+                    asteroids.nextPosition++;
+                }
         }
         
         if (player.angle == -91) 
@@ -89,13 +98,26 @@ var playState = {
         player.orbitDirection = -player.maneuverForce;
     },
 
+    fixOrbit: function() {
+        player.orbitDirection = 0;
+    },
+
     fire: function() {
         if (current.ammo > 0)
         {
             this.weapon.fireAngle = player.angle + 90;
             this.weapon.fire();
-            //current.ammo--;
+            current.ammo--;
         }
+    },
+
+    playerHit: function() {
+        game.state.start('lose');
+    },
+
+    asteroidHit: function(player, obstacle) {
+        current.score += current.level;
+        obstacle.kill();
     },
 
     /*

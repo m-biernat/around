@@ -18,7 +18,7 @@ function createPlayer()
     player.currentAngle = -90;
     player.maneuverForce = 3.25;
     player.orbitOffset = outerOrbitOffset / 2;
-    player.orbitDirection = 0;    
+    player.orbitDirection = 0;
 }
 
 function movePlayer() 
