@@ -2,7 +2,8 @@
 
 var current = {
     level: 1,
-    score: 0
+    score: 0,
+    ammo: 1
 }
 
 var playState = {
@@ -23,6 +24,13 @@ var playState = {
         createAsteroids();
         generateAsteroids();
 
+        // Weapon
+        this.weapon = game.add.weapon(1, 'bullet');
+        this.weapon.bulletKillType = Phaser.Weapon.KILL_WORLD_BOUNDS;
+        this.weapon.trackSprite(player, 0, 15);
+        this.weapon.bulletSpeed = 400;
+
+        // UI
         this.levelText = game.add.text(game.world.centerX * 0.2, game.world.centerY * 1.8, 
             "LEVEL", { fill: '#FFFFFF' });
         this.levelText.anchor.setTo(.5, .5);
@@ -37,6 +45,9 @@ var playState = {
 
         this.minusKey = game.input.keyboard.addKey(Phaser.Keyboard.DOWN);
         this.minusKey.onDown.add(this.decOrbit, this);
+
+        this.fireKey = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+        this.fireKey.onDown.add(this.fire, this);
     },
 
     update: function() 
@@ -45,7 +56,9 @@ var playState = {
 
         game.physics.arcade.collide(player, asteroids, function() { game.state.start('lose'); });
 
-        if (player.angle == asteroids.positionArr[asteroids.nextPosition])
+        let pos = asteroids.positionArr[asteroids.nextPosition];
+
+        if (pos - 1 < player.angle && pos + 1 > player.angle )
         {
             current.score += current.level;
 
@@ -56,11 +69,10 @@ var playState = {
         }
         
         if (player.angle == -91) 
-        {      
-            console.log(current.level * asteroids.positionArr.length);
-            
+        {
             current.level++;
-            
+            current.ammo = 1;
+
             generatePlanet();
             generateAsteroids();      
         }
@@ -75,6 +87,15 @@ var playState = {
 
     decOrbit: function() {
         player.orbitDirection = -player.maneuverForce;
+    },
+
+    fire: function() {
+        if (current.ammo > 0)
+        {
+            this.weapon.fireAngle = player.angle + 90;
+            this.weapon.fire();
+            //current.ammo--;
+        }
     },
 
     /*

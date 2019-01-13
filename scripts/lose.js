@@ -48,6 +48,7 @@ var loseState = {
     restartGame: function() {
         current.level = 1;
         current.score = 0;
+        current.ammo = 1;
         game.state.start('play');
     },
 
