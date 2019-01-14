@@ -7,14 +7,8 @@ var planet, orbit;
 function createPlanet() 
 {
     planet = game.add.sprite(game.world.centerX, game.world.centerY, "planets");
-
-    planet.width = 250;
-    planet.height = 250;
     planet.anchor.setTo(.5,.5);
-    planet.tint = 0x4286f4;
 
-    planet.gravity = 1.25;
-    
     orbit = game.add.graphics();
     orbit.anchor.setTo(.5, .5);
     drawOrbit();

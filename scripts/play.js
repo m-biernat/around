@@ -15,7 +15,8 @@ var playState = {
         this.physics.startSystem(Phaser.Physics.ARCADE);
 
         // First planet creation
-        createPlanet()
+        createPlanet();
+        generatePlanet();
 
         // Player creation
         createPlayer();
