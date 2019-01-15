@@ -25,12 +25,6 @@ var playState = {
         createAsteroids();
         generateAsteroids();
 
-        // Weapon
-        this.weapon = game.add.weapon(1, 'bullet');
-        this.weapon.bulletKillType = Phaser.Weapon.KILL_WORLD_BOUNDS;
-        this.weapon.trackSprite(player, 0, 15);
-        this.weapon.bulletSpeed = 400;
-
         // UI
         this.levelText = game.add.text(game.world.centerX * 0.2, game.world.centerY * 1.8, 
             "LEVEL", { fill: '#FFFFFF' });
@@ -56,7 +50,7 @@ var playState = {
         movePlayer();
 
         game.physics.arcade.overlap(player, asteroids, this.playerHit);
-        game.physics.arcade.overlap(this.weapon.bullets, asteroids, this.asteroidHit);
+        game.physics.arcade.overlap(player.weapon.bullets, asteroids, this.asteroidHit);
 
         let pos = asteroids.positionArr[asteroids.nextPosition];
 
@@ -99,8 +93,8 @@ var playState = {
     fire: function() {
         if (current.ammo > 0)
         {
-            this.weapon.fireAngle = player.angle + 90;
-            this.weapon.fire();
+            player.weapon.fireAngle = player.angle + 90;
+            player.weapon.fire();
             current.ammo--;
         }
     },

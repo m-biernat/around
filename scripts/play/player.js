@@ -19,6 +19,11 @@ function createPlayer()
     player.maneuverForce = 3.25;
     player.orbitOffset = outerOrbitOffset / 2;
     player.orbitDirection = 0;
+
+    player.weapon = game.add.weapon(1, 'bullet');
+    player.weapon.bulletKillType = Phaser.Weapon.KILL_WORLD_BOUNDS;
+    player.weapon.trackSprite(player, 0, 15);
+    player.weapon.bulletSpeed = 400;
 }
 
 function movePlayer() 
