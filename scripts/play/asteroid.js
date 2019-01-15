@@ -14,7 +14,7 @@ function createAsteroids()
         asteroid.kill();
         asteroids.add(asteroid);
     }
-    asteroids.count = 5;
+    asteroids.count = 4;
     asteroids.nextPosition = 0;
 }
 
@@ -22,11 +22,11 @@ function createAsteroids()
 function generateAsteroids()
 {
     // Increease number of asteroids
-    if (current.level % 5 == 0 && asteroids.count < spawnCount)
+    if (current.level % 4 == 0 && asteroids.count < spawnCount)
         asteroids.count++;
 
     // Redistribute them around planet
-    let currentAngle = -80, nextAngle = 40;
+    let currentAngle = -70, nextAngle = 40;
     let positions = generatePositions();
 
     let currentAsteroid = 0, offsetArr = [];
@@ -85,7 +85,6 @@ function generateAsteroids()
             asteroid.angle = angle;
             asteroid.tint = tint;
             asteroid.revive();
-            asteroid.body.immovable = true;
 
             currentAsteroid++;
         }

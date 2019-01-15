@@ -47,10 +47,7 @@ var playState = {
         this.minusKey = game.input.keyboard.addKey(Phaser.Keyboard.DOWN);
         this.minusKey.onDown.add(this.decOrbit, this);
 
-        this.zeroKey = game.input.keyboard.addKey(Phaser.Keyboard.Z);
-        this.zeroKey.onDown.add(this.fixOrbit, this);
-
-        this.fireKey = game.input.keyboard.addKey(Phaser.Keyboard.X);
+        this.fireKey = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
         this.fireKey.onDown.add(this.fire, this);
     },
 
@@ -97,10 +94,6 @@ var playState = {
 
     decOrbit: function() {
         player.orbitDirection = -player.maneuverForce;
-    },
-
-    fixOrbit: function() {
-        player.orbitDirection = 0;
     },
 
     fire: function() {
