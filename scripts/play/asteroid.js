@@ -76,7 +76,7 @@ function generateAsteroids()
 
             let angle = Math.floor((Math.random() * 361) - 180);
 
-            let tint = (Math.random() * 0x181818) + 0x626262;
+            let tint = (Math.random() * 0x181818) + 0x9e9e9e;
             
             asteroid.x = spawnPointX;
             asteroid.y = spawnPointY;

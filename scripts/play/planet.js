@@ -23,7 +23,7 @@ function generatePlanet()
     let angle = Math.floor((Math.random() * 361) - 180);
 
     // Generating tint value
-    let tint = Math.random() * 0xffffff;
+    let tint = (Math.random() * 0xacacac) + 0x535353;
 
     // Size generation form [200;350]
     let radius = 0, minRadius = 200, maxRadius = 151;

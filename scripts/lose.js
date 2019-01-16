@@ -9,33 +9,33 @@ var loseState = {
 
         this.gameOverText = game.add.text(game.world.centerX, game.world.centerY * .5, 
             "Game Over!", { fill: "#FFF", font: "bold 48px Arial" });
-        this.gameOverText.anchor.setTo(.5, .5);
+        this.gameOverText.anchor.setTo(.5);
 
         this.scoreText = game.add.text(game.world.centerX, game.world.centerY * .8, 
             "Score", { fill: "#FFF", font: "24px Arial" });
-        this.scoreText.anchor.setTo(.5, .5);
+        this.scoreText.anchor.setTo(.5);
 
         this.lastScoreText = game.add.text(game.world.centerX * .8, game.world.centerY, 
             "LAST:", { fill: "#FFF", font: "22px Arial" });
-        this.lastScoreText.anchor.setTo(.5, .5);
+        this.lastScoreText.anchor.setTo(.5);
 
         this.lastScore = game.add.text(game.world.centerX * 1.1, game.world.centerY, 
             "999999", { fill: "#FFF", font: "bold 28px Arial" });
-        this.lastScore.anchor.setTo(.5, .5);
+        this.lastScore.anchor.setTo(.5);
 
         this.highScoreText = game.add.text(game.world.centerX * .8, game.world.centerY * 1.2, 
             "HIGH:", { fill: "#FFF", font: "22px Arial" });
-        this.highScoreText.anchor.setTo(.5, .5);
+        this.highScoreText.anchor.setTo(.5);
 
         this.highScore = game.add.text(game.world.centerX * 1.1, game.world.centerY * 1.2, 
             "999999", { fill: "#FFF", font: "bold 28px Arial" });
-        this.highScore.anchor.setTo(.5, .5);
+        this.highScore.anchor.setTo(.5);
 
         this.gameScore();
 
         this.replayText = game.add.text(game.world.centerX, game.world.centerY * 1.5, 
             REPLAY_TEXT, { fill: '#FFF', font: "bold 26px Arial" });
-        this.replayText.anchor.setTo(.5, .5);
+        this.replayText.anchor.setTo(.5);
         this.replayText.alpha = 0;
 
         this.tween = game.add.tween(this.replayText).to( { alpha: 1 }, 1000, "Linear", true, 0, -1);

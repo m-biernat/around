@@ -26,13 +26,21 @@ var playState = {
         generateAsteroids();
 
         // UI
-        this.levelText = game.add.text(game.world.centerX * 0.2, game.world.centerY * 1.8, 
-            "LEVEL", { fill: '#FFFFFF' });
-        this.levelText.anchor.setTo(.5, .5);
+        this.levelLabel = game.add.text(game.world.centerX * 0.2, game.world.centerY * 1.75, 
+            "LEVEL", { fill: '#fff', font: "18px Arial" });
+        this.levelLabel.anchor.setTo(.5);
 
-        this.scoreText = game.add.text(game.world.centerX * 1.8 , game.world.centerY * 1.8, 
-            "SCORE", { fill: '#FFFFFF' });
-        this.scoreText.anchor.setTo(.5, .5);
+        this.levelText = game.add.text(game.world.centerX * 0.2, game.world.centerY * 1.85, 
+            "999", { fill: '#fff', font: "bold 26px Arial" });
+        this.levelText.anchor.setTo(.5);
+
+        this.scoreLabel = game.add.text(game.world.centerX * 1.8 , game.world.centerY * 1.75, 
+            "SCORE", { fill: '#fff', font: "18px Arial" });
+        this.scoreLabel.anchor.setTo(.5);
+
+        this.scoreText = game.add.text(game.world.centerX * 1.8 , game.world.centerY * 1.85, 
+            "999999", { fill: '#fff', font: "bold 26px Arial" });
+        this.scoreText.anchor.setTo(.5);
 
         // Keybinds
         this.plusKey = game.input.keyboard.addKey(Phaser.Keyboard.UP);
