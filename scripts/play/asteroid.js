@@ -22,7 +22,7 @@ function createAsteroids()
 function generateAsteroids()
 {
     // Increease number of asteroids
-    if (current.level % 4 == 0 && asteroids.count < spawnCount)
+    if (current.level % 3 == 0 && asteroids.count < spawnCount)
         asteroids.count++;
 
     // Redistribute them around planet

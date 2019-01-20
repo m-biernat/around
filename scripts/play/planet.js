@@ -29,8 +29,8 @@ function generatePlanet()
     let radius = 0, minRadius = 200, maxRadius = 151;
 
     // [200;250] at start increasing every level to make wider range
-    if (current.level <= 100)
-        radius = Math.floor((Math.random() * (50 + current.level)) + minRadius);
+    if (current.level <= 50)
+        radius = Math.floor((Math.random() * (2 * current.level + 50)) + minRadius);
     else
         radius = Math.floor((Math.random() * maxRadius) + minRadius);
 
