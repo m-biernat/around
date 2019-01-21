@@ -1,7 +1,5 @@
 // This file contains menu state.
 
-const PLAY_TEXT = "Press [SPACEBAR] to start!";
-
 var menuState = {
 
     create: function() {
@@ -9,11 +7,11 @@ var menuState = {
 
         this.gameTitleText = game.add.text(game.world.centerX, game.world.centerY * 0.7, 
             "AROUND", { fill: "#FFF", font: "bold 58px Arial" });
-        this.gameTitleText.anchor.setTo(.5, .5);
+        this.gameTitleText.anchor.setTo(.5);
 
         this.playText = game.add.text(game.world.centerX, game.world.centerY * 1.5, 
-            PLAY_TEXT, { fill: '#FFFFFF' });
-        this.playText.anchor.setTo(.5, .5);
+            "Press [SPACEBAR] to start!", { fill: '#FFF' });
+        this.playText.anchor.setTo(.5);
         this.playText.alpha = 0;
 
         this.tween = game.add.tween(this.playText).to( { alpha: 1 }, 1000, "Linear", true, 0, -1);

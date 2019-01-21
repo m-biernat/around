@@ -10,10 +10,11 @@ var loadState = {
         game.load.image("background", "assets/background.png");
 
         game.load.image("player", "assets/player.png");
+        game.load.image("engine", "assets/engine.png");
         game.load.image("bullet", "assets/bullet.png");
         game.load.image("asteroid", "assets/asteroid.png");
         game.load.spritesheet("planets", "assets/planets.png", 500, 500, planetsCount);
- 
+        
         highScore = window.localStorage.getItem('highScore');
         if (!highScore) highScore = 0;
     },

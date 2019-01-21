@@ -1,6 +1,6 @@
 // This is responsible for player object.
 
-const playerSize = 25;
+const playerSize = 20;
 
 var player;
 
@@ -14,13 +14,15 @@ function createPlayer()
     player.height = playerSize;
     player.anchor.setTo(.5,.5);
 
+    player.addChild(game.make.sprite(-125, -240, "engine"));
+
     player.speed = 1;
     player.currentAngle = -90;
     player.maneuverForce = 3.25;
     player.orbitOffset = outerOrbitOffset / 2;
     player.orbitDirection = 0;
 
-    player.weapon = game.add.weapon(1, 'bullet');
+    player.weapon = game.add.weapon(1, "bullet");
     player.weapon.bulletKillType = Phaser.Weapon.KILL_WORLD_BOUNDS;
     player.weapon.trackSprite(player, 0, 15);
     player.weapon.bulletSpeed = 400;

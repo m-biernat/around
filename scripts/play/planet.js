@@ -52,6 +52,6 @@ function drawOrbit()
 {
     orbit.clear();
     orbit.lineStyle(2, 0xffffff, .1);
-    orbit.drawCircle(planet.x, planet.y, planet.width + 115 + outerOrbitOffset);
+    orbit.drawCircle(planet.x, planet.y, planet.width + 110 + outerOrbitOffset);
     orbit.drawCircle(planet.x, planet.y, planet.width + 15 + playerSize + innerOrbitOffset);
 }

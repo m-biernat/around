@@ -1,7 +1,5 @@
 // This file contains lose state that is activated after player death.
 
-const REPLAY_TEXT = "Press [SPACEBAR] to restart!";
-
 var loseState = {
 
     create: function() {
@@ -34,7 +32,7 @@ var loseState = {
         this.gameScore();
 
         this.replayText = game.add.text(game.world.centerX, game.world.centerY * 1.5, 
-            REPLAY_TEXT, { fill: '#FFF', font: "bold 26px Arial" });
+            "Press [SPACEBAR] to restart!", { fill: '#FFF', font: "bold 26px Arial" });
         this.replayText.anchor.setTo(.5);
         this.replayText.alpha = 0;
 
