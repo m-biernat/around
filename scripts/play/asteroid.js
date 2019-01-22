@@ -9,7 +9,7 @@ function createAsteroids()
 {
     for (let i = 0; i < spawnCount; i++) 
     {    
-        let asteroid = game.add.sprite(game.world.centerX, game.world.centerY, 'asteroid');
+        let asteroid = game.add.sprite(game.world.centerX, game.world.centerY, 'asteroids');
         asteroid.anchor.setTo(.5, .5);
         asteroid.kill();
         asteroids.add(asteroid);
@@ -74,6 +74,8 @@ function generateAsteroids()
             let spawnPointX = planet.x + currentOffset * Math.cos(radians);
             let spawnPointY = planet.y + currentOffset * Math.sin(radians);
 
+            let frame = Math.floor((Math.random() * (asteroidsCount + 1)));
+
             let angle = Math.floor((Math.random() * 361) - 180);
 
             let tint = (Math.random() * 0x181818) + 0x9e9e9e;
@@ -82,6 +84,7 @@ function generateAsteroids()
             asteroid.y = spawnPointY;
             asteroid.height = radius;
             asteroid.width = radius;
+            asteroid.frame = frame;
             asteroid.angle = angle;
             asteroid.tint = tint;
             asteroid.revive();

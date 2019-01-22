@@ -14,7 +14,9 @@ function createPlayer()
     player.height = playerSize;
     player.anchor.setTo(.5,.5);
 
-    player.addChild(game.make.sprite(-125, -240, "engine"));
+    let engine = player.addChild(game.make.sprite(-125, -345, "engine"));
+    engine.animations.add("thrust");
+    engine.animations.play("thrust", 13, true);
 
     player.speed = 1;
     player.currentAngle = -90;

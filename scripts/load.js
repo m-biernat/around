@@ -1,6 +1,7 @@
 // This is responsible for loading all assets and setting active state to menu.
 
 const planetsCount = 4;
+const asteroidsCount = 2;
 
 var highScore;
 
@@ -10,9 +11,9 @@ var loadState = {
         game.load.image("background", "assets/background.png");
 
         game.load.image("player", "assets/player.png");
-        game.load.image("engine", "assets/engine.png");
+        game.load.spritesheet("engine", "assets/engine.png", 250, 250, 3);
         game.load.image("bullet", "assets/bullet.png");
-        game.load.image("asteroid", "assets/asteroid.png");
+        game.load.spritesheet("asteroids", "assets/asteroids.png", 80, 80, asteroidsCount);
         game.load.spritesheet("planets", "assets/planets.png", 500, 500, planetsCount);
         
         highScore = window.localStorage.getItem('highScore');
