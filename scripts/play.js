@@ -27,19 +27,19 @@ var playState = {
 
         // UI
         this.levelLabel = game.add.text(game.world.centerX * 0.2, game.world.centerY * 1.75, 
-            "LEVEL", { fill: '#fff', font: "18px Arial" });
+            "LEVEL", { fill: '#fff', font: "18px Roboto" });
         this.levelLabel.anchor.setTo(.5);
 
         this.levelText = game.add.text(game.world.centerX * 0.2, game.world.centerY * 1.85, 
-            "999", { fill: '#fff', font: "bold 26px Arial" });
+            "999", { fill: '#fff', font: "bold 26px Roboto" });
         this.levelText.anchor.setTo(.5);
 
         this.scoreLabel = game.add.text(game.world.centerX * 1.8 , game.world.centerY * 1.75, 
-            "SCORE", { fill: '#fff', font: "18px Arial" });
+            "SCORE", { fill: '#fff', font: "18px Roboto" });
         this.scoreLabel.anchor.setTo(.5);
 
         this.scoreText = game.add.text(game.world.centerX * 1.8 , game.world.centerY * 1.85, 
-            "999999", { fill: '#fff', font: "bold 26px Arial" });
+            "999999", { fill: '#fff', font: "bold 26px Roboto" });
         this.scoreText.anchor.setTo(.5);
 
         // Keybinds

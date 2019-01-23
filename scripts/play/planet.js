@@ -7,7 +7,7 @@ var planet, orbit;
 function createPlanet() 
 {
     planet = game.add.sprite(game.world.centerX, game.world.centerY, "planets");
-    planet.anchor.setTo(.5,.5);
+    planet.anchor.setTo(.5, .5);
 
     orbit = game.add.graphics();
     orbit.anchor.setTo(.5, .5);
@@ -17,7 +17,7 @@ function createPlanet()
 function generatePlanet() 
 {
     // Frame selection from spritesheet
-    let frame = Math.floor((Math.random() * (planetsCount + 1)));
+    let frame = Math.floor((Math.random() * planetsCount));
 
     // Generating angle of rotation
     let angle = Math.floor((Math.random() * 361) - 180);

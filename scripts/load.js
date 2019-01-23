@@ -9,6 +9,7 @@ var loadState = {
     
     preload: function() {
         game.load.image("background", "assets/background.png");
+        game.load.image("logo", "assets/logo.png");
 
         game.load.image("player", "assets/player.png");
         game.load.spritesheet("engine", "assets/engine.png", 250, 250, 3);

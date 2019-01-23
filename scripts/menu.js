@@ -5,12 +5,18 @@ var menuState = {
     create: function() {
         this.background = game.add.sprite(0, 0, "background");
 
-        this.gameTitleText = game.add.text(game.world.centerX, game.world.centerY * 0.7, 
-            "AROUND", { fill: "#FFF", font: "bold 58px Arial" });
-        this.gameTitleText.anchor.setTo(.5);
+        this.planet = game.add.sprite(game.world.centerX, game.world.centerY, "planets");
+        this.planet.anchor.setTo(.5, .5);
+        this.planet.frame = 1;
+        this.planet.tint = 0x7f1010;
+        this.planet.scale.setTo(.5);
 
-        this.playText = game.add.text(game.world.centerX, game.world.centerY * 1.5, 
-            "Press [SPACEBAR] to start!", { fill: '#FFF' });
+        this.logo = game.add.sprite(game.world.centerX, game.world.centerY * 0.8, "logo");
+        this.logo.anchor.setTo(.5, .5);
+        this.logo.scale.setTo(.5);
+
+        this.playText = game.add.text(game.world.centerX, game.world.centerY * 1.6, 
+            "Press [SPACEBAR] to start!", { fill: '#FFF', font: "bold 26px Roboto" });
         this.playText.anchor.setTo(.5);
         this.playText.alpha = 0;
 

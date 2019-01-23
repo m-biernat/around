@@ -6,33 +6,33 @@ var loseState = {
         this.background = game.add.sprite(0, 0, "background");
 
         this.gameOverText = game.add.text(game.world.centerX, game.world.centerY * .5, 
-            "Game Over!", { fill: "#FFF", font: "bold 48px Arial" });
+            "GAME OVER!", { fill: "#FFF", font: "bold 48px Roboto" });
         this.gameOverText.anchor.setTo(.5);
 
         this.scoreText = game.add.text(game.world.centerX, game.world.centerY * .8, 
-            "Score", { fill: "#FFF", font: "24px Arial" });
+            "Score", { fill: "#FFF", font: "24px Roboto" });
         this.scoreText.anchor.setTo(.5);
 
         this.lastScoreText = game.add.text(game.world.centerX * .8, game.world.centerY, 
-            "LAST:", { fill: "#FFF", font: "22px Arial" });
+            "LAST:", { fill: "#FFF", font: "22px Roboto" });
         this.lastScoreText.anchor.setTo(.5);
 
         this.lastScore = game.add.text(game.world.centerX * 1.1, game.world.centerY, 
-            "999999", { fill: "#FFF", font: "bold 28px Arial" });
+            "999999", { fill: "#FFF", font: "bold 28px Roboto" });
         this.lastScore.anchor.setTo(.5);
 
         this.highScoreText = game.add.text(game.world.centerX * .8, game.world.centerY * 1.2, 
-            "HIGH:", { fill: "#FFF", font: "22px Arial" });
+            "HIGH:", { fill: "#FFF", font: "22px Roboto" });
         this.highScoreText.anchor.setTo(.5);
 
         this.highScore = game.add.text(game.world.centerX * 1.1, game.world.centerY * 1.2, 
-            "999999", { fill: "#FFF", font: "bold 28px Arial" });
+            "999999", { fill: "#FFF", font: "bold 28px Roboto" });
         this.highScore.anchor.setTo(.5);
 
         this.gameScore();
 
         this.replayText = game.add.text(game.world.centerX, game.world.centerY * 1.5, 
-            "Press [SPACEBAR] to restart!", { fill: '#FFF', font: "bold 26px Arial" });
+            "Press [SPACEBAR] to restart!", { fill: '#FFF', font: "bold 26px Roboto" });
         this.replayText.anchor.setTo(.5);
         this.replayText.alpha = 0;
 

@@ -74,7 +74,7 @@ function generateAsteroids()
             let spawnPointX = planet.x + currentOffset * Math.cos(radians);
             let spawnPointY = planet.y + currentOffset * Math.sin(radians);
 
-            let frame = Math.floor((Math.random() * (asteroidsCount + 1)));
+            let frame = Math.floor((Math.random() * asteroidsCount));
 
             let angle = Math.floor((Math.random() * 361) - 180);
 
