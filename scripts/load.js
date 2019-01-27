@@ -1,6 +1,6 @@
 // This is responsible for loading all assets and setting active state to menu.
 
-const planetsCount = 4;
+const planetsCount = 5;
 const asteroidsCount = 2;
 
 var highScore;

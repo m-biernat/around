@@ -82,6 +82,8 @@ var playState = {
             current.level++;
             current.ammo = 1;
 
+            game.camera.flash(0x232d3e, 250);
+
             generatePlanet();
             generateAsteroids();      
         }
